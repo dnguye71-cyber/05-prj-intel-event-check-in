@@ -25,4 +25,12 @@ form.addEventListener("submit", function(event) {
   // Update progress bar 
   const percentage = Math.round((count / maxCount) * 100) + "%"; // Calculate the percentage of check-ins
   console.log(`Progress: ${percentage}`); // Log the progress percentage to the console (you can replace this with your desired functionality)
+
+  // Update team counter
+  const teamCounter = document.getElementById(team + "Count");
+  const current = parseInt(teamCounter.textContent);
+  console.log("Previous Team Count: ", current); // Log the previous team count to the console
+
+  const newTotal = current + 1; // Increment the team count
+  console.log("New Team Count: ", newTotal); // Log the new team count to the console
 });
