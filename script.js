@@ -56,9 +56,7 @@ form.addEventListener("submit", function(event) {
     }
   }
 
-  if (progressText) {
-    progressText.textContent = `${count}/${maxCount}`; // Update the progress text display
-  }
+
 
   // Update team counter
   // Map team values to count element IDs
