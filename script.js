@@ -98,10 +98,7 @@ form.addEventListener("submit", function(event) {
     greetingElement.innerHTML = `${randomMessage} <strong>${name}</strong> from <strong>${teamName}</strong>`;
     greetingElement.style.display = "block"; // Make sure it's visible
     
-    // Auto-hide the greeting after 4 seconds
-    setTimeout(() => {
-      greetingElement.style.display = "none";
-    }, 4000);
+  
   }
   
   console.log("Team Counts:", teamCounts);
