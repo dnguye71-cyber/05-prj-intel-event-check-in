@@ -30,7 +30,6 @@ form.addEventListener("submit", function(event) {
   console.log("Total Check-Ins: ", count); // Log the current count of check-ins
 
   // ===== UPDATE DOM: Total Attendee Count =====
-  // FIXED: Changed from "totalCount" to "attendeeCount"
   const attendeeCountDisplay = document.getElementById("attendeeCount");
   if (attendeeCountDisplay) {
     attendeeCountDisplay.textContent = count; // Update the total count display
@@ -70,17 +69,20 @@ form.addEventListener("submit", function(event) {
     console.log(`${teamName}: ${teamCounter.textContent}`);
   }
 
-  // Track team counts for internal state
-  if (team === "water") {
-    teamCounts.waterWise++;
-  } else if (team === "zero") {
-    teamCounts.netZero++;
-  } else if (team === "power") {
-    teamCounts.renewables++;
+  // ===== TRACK TEAM COUNTS IN STATE =====
+  // Use a mapping to correctly track team counts
+  const teamStateMap = {
+    "water": "waterWise",
+    "zero": "netZero",
+    "power": "renewables"
+  };
+
+  const teamStateKey = teamStateMap[team];
+  if (teamStateKey) {
+    teamCounts[teamStateKey]++;
   }
- 
+  
   // ===== UPDATE DOM: Greeting Message =====
-  // FIXED: Changed from "greetingMessage" to "greeting"
   const greetingElement = document.getElementById("greeting");
   if (greetingElement) {
     const messages = [
@@ -102,7 +104,7 @@ form.addEventListener("submit", function(event) {
     }, 4000);
   }
   
-  console.log(`Team Counts:`, teamCounts);
+  console.log("Team Counts:", teamCounts);
 
   form.reset(); // Reset the form after submission
 });
