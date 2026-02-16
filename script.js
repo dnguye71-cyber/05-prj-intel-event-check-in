@@ -44,7 +44,7 @@ form.addEventListener("submit", function(event) {
   const progressText = document.getElementById("progressText");
 
   if (progressBar) {
-    progressBar.style.width = progressPercentage + "%"; // Update the width of the progress bar
+    progressBar.style.width = progressMax + "%"; // Update the width of the progress bar
   
     // Change color based on percentage progress
     if (progressMax < 30) {
