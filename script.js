@@ -3,6 +3,10 @@ const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect");
 
+// Track Attendee Check-Ins
+let count = 0; // Initialize count of check-ins
+const maxCount = 50; // Set maximum count for check-ins
+
 // Handle form submission
 form.addEventListener("submit", function(event) { 
   event.preventDefault(); // Prevent the default form submission behavior
@@ -10,6 +14,11 @@ form.addEventListener("submit", function(event) {
   // Get the values from the form inputs
   const name = nameInput.value;
   const team = teamSelect.value;
+  const teamName = teamSelect.selectedOptions[0].text; // Get the text of the selected option
 
-  console.log(name, team); // Log the values to the console (you can replace this with your desired functionality)
+  console.log(name, teamName); // Log the values to the console (you can replace this with your desired functionality)
+
+  // Increment the count of check-ins
+  count++;
+  console.log("Total Check-Ins: ", count); // Log the current count of check-ins
 });
