@@ -28,9 +28,11 @@ form.addEventListener("submit", function(event) {
 
   // Update team counter
   const teamCounter = document.getElementById(team + "Count");
-  const current = parseInt(teamCounter.textContent);
-  console.log("Previous Team Count: ", current); // Log the previous team count to the console
+  teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+ 
+  // Show Welcome Message
+  const message = `🎉 Welcome, ${name} from ${teamName}`;
+  console.log(message);
 
-  const newTotal = current + 1; // Increment the team count
-  console.log("New Team Count: ", newTotal); // Log the new team count to the console
+  form.reset(); // Reset the form after submission
 });
