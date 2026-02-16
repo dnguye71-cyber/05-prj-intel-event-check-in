@@ -21,4 +21,8 @@ form.addEventListener("submit", function(event) {
   // Increment the count of check-ins
   count++;
   console.log("Total Check-Ins: ", count); // Log the current count of check-ins
+
+  // Update progress bar 
+  const percentage = Math.round((count / maxCount) * 100) + "%"; // Calculate the percentage of check-ins
+  console.log(`Progress: ${percentage}`); // Log the progress percentage to the console (you can replace this with your desired functionality)
 });
