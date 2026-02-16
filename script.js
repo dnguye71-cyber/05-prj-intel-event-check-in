@@ -23,26 +23,25 @@ form.addEventListener("submit", function(event) {
   const team = teamSelect.value;
   const teamName = teamSelect.selectedOptions[0].text; // Get the text of the selected option
 
-  console.log(name, teamName); // Log the values to the console (you can replace this with your desired functionality)
+  console.log(name, teamName); // Log the values to the console
 
   // Increment the count of check-ins
   count++;
   console.log("Total Check-Ins: ", count); // Log the current count of check-ins
 
-  // Update the DOM: Total Attendee Count
-  const totalCountDisplay = document.getElementById("totalCount");
-  if (totalCountDisplay) {
-    totalCountDisplay.textContent = count; // Update the total count display
+  // ===== UPDATE DOM: Total Attendee Count =====
+  // FIXED: Changed from "totalCount" to "attendeeCount"
+  const attendeeCountDisplay = document.getElementById("attendeeCount");
+  if (attendeeCountDisplay) {
+    attendeeCountDisplay.textContent = count; // Update the total count display
   }
 
-  // Update progress bar 
-  const percentage = Math.round((count / maxCount) * 100) + "%"; // Calculate the percentage of check-ins
-  const progressMax = Math.min(percentage, "100%"); // Ensure the percentage does not exceed 100%
-  console.log(`Progress: ${percentage}`); // Log the progress percentage to the console (you can replace this with your desired functionality)
+  // ===== UPDATE DOM: Progress Bar =====
+  const percentage = Math.round((count / maxCount) * 100); // Calculate the percentage of check-ins
+  const progressMax = Math.min(percentage, 100); // Ensure the percentage does not exceed 100%
+  console.log(`Progress: ${percentage}%`); // Log the progress percentage
 
   const progressBar = document.getElementById("progressBar");
-
-
   if (progressBar) {
     progressBar.style.width = progressMax + "%"; // Update the width of the progress bar
   
@@ -56,9 +55,7 @@ form.addEventListener("submit", function(event) {
     }
   }
 
-
-
-  // Update team counter
+  // ===== UPDATE DOM: Team Counter =====
   // Map team values to count element IDs
   const teamCountMap = {
     "water": "waterCount",
@@ -75,16 +72,17 @@ form.addEventListener("submit", function(event) {
 
   // Track team counts for internal state
   if (team === "water") {
-    teamCounts.water++;
+    teamCounts.waterWise++;
   } else if (team === "zero") {
-    teamCounts.zero++;
+    teamCounts.netZero++;
   } else if (team === "power") {
-    teamCounts.power++;
+    teamCounts.renewables++;
   }
  
-  // Show Welcome Message
- const greetingMessage = document.getElementById("greetingMessage");
-  if (greetingMessage) {
+  // ===== UPDATE DOM: Greeting Message =====
+  // FIXED: Changed from "greetingMessage" to "greeting"
+  const greetingElement = document.getElementById("greeting");
+  if (greetingElement) {
     const messages = [
       "🎉 Welcome to the Intel Sustainability Summit!",
       "👋 Great to see you here!",
@@ -95,10 +93,16 @@ form.addEventListener("submit", function(event) {
     ];
 
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    greetingMessage.innerHTML = `${randomMessage} <strong>${name}</strong> from <strong>${teamName}</strong>`;
-    greetingMessage.style.display = "block"; // Make sure it's visible
+    greetingElement.innerHTML = `${randomMessage} <strong>${name}</strong> from <strong>${teamName}</strong>`;
+    greetingElement.style.display = "block"; // Make sure it's visible
+    
+    // Auto-hide the greeting after 4 seconds
+    setTimeout(() => {
+      greetingElement.style.display = "none";
+    }, 4000);
   }
-  console.log(`Team Counts: ${JSON.stringify(teamCounts)}`);
+  
+  console.log(`Team Counts:`, teamCounts);
 
   form.reset(); // Reset the form after submission
 });
