@@ -41,7 +41,7 @@ form.addEventListener("submit", function(event) {
   console.log(`Progress: ${percentage}`); // Log the progress percentage to the console (you can replace this with your desired functionality)
 
   const progressBar = document.getElementById("progressBar");
-  const progressText = document.getElementById("progressText");
+
 
   if (progressBar) {
     progressBar.style.width = progressMax + "%"; // Update the width of the progress bar
@@ -61,17 +61,27 @@ form.addEventListener("submit", function(event) {
   }
 
   // Update team counter
-  const teamCounter = document.getElementById(team + "Count");
+  // Map team values to count element IDs
+  const teamCountMap = {
+    "water": "waterCount",
+    "zero": "zeroCount",
+    "power": "powerCount"
+  };
+
+  const teamCountElementId = teamCountMap[team];
+  const teamCounter = document.getElementById(teamCountElementId);
   if (teamCounter) {
     teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+    console.log(`${teamName}: ${teamCounter.textContent}`);
   }
+
   // Track team counts for internal state
-  if (team === "waterWiseCount") {
-    teamCounts.waterWise++;
-  } else if (team === "netZeroCount") {
-    teamCounts.netZero++;
-  } else if (team === "renewablesCount") {
-    teamCounts.renewables++;
+  if (team === "water") {
+    teamCounts.water++;
+  } else if (team === "zero") {
+    teamCounts.zero++;
+  } else if (team === "power") {
+    teamCounts.power++;
   }
  
   // Show Welcome Message
